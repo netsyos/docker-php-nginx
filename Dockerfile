@@ -10,6 +10,7 @@ RUN apt-get -y --force-yes install php7.1-cli php7.1-fpm php7.1-mysql php7.1-jso
      php7.1-zip php7.1-imagick php-ssh2
 
 RUN apt-get install -y \
+  sendmail \
   rsync \
   bzip2 \
   libcurl4-openssl-dev \
@@ -54,6 +55,10 @@ RUN chmod +x /etc/service/fpm/run
 RUN mkdir /etc/service/logs
 ADD service/logs.sh /etc/service/logs/run
 RUN chmod +x /etc/service/logs/run
+
+
+ADD init/01_init.sh /etc/my_init.d/01_init.sh
+RUN chmod +x /etc/my_init.d/01_init.sh
 
 # Clean up APT when done.
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
