@@ -4,10 +4,10 @@ RUN add-apt-repository -y ppa:ondrej/php
 
 RUN apt-get update
 
-RUN apt-get -y --force-yes install php7.1-cli php7.1-fpm php7.1-mysql php7.1-json php7.1-mcrypt \
-     php7.1-curl php7.1-xml php7.1-gd php7.1-intl php7.1-imap \
-     php7.1-dev php7.1-bcmath php7.1-bz2 php7.1-mbstring php7.1-soap \
-     php7.1-zip php7.1-imagick php-ssh2
+RUN apt-get -y --force-yes install php7.4-cli php7.4-fpm php7.4-mysql php7.4-json php7.4-mcrypt \
+     php7.4-curl php7.4-xml php7.4-gd php7.4-intl php7.4-imap \
+     php7.4-dev php7.4-bcmath php7.4-bz2 php7.4-mbstring php7.4-soap \
+     php7.4-zip php7.4-imagick php-ssh2
 
 RUN apt-get install -y \
   sendmail \
@@ -37,12 +37,12 @@ RUN set -ex \
 
 ENV WWW_PATH /var/www
 
-COPY config/php/php.ini /etc/php/7.1/fpm/
-COPY config/php/php.ini /etc/php/7.1/cli/
+COPY config/php/php.ini /etc/php/7.4/fpm/
+COPY config/php/php.ini /etc/php/7.4/cli/
 COPY config/nginx/nginx.conf /etc/nginx/
-RUN echo "extension = apcu.so" | tee -a /etc/php/7.1/mods-available/apcu.ini
-RUN ln -s /etc/php/7.1/mods-available/apcu.ini /etc/php/7.1/fpm/conf.d/30-apcu.ini
-RUN ln -s /etc/php/7.1/mods-available/apcu.ini /etc/php/7.1/cli/conf.d/30-apcu.ini
+RUN echo "extension = apcu.so" | tee -a /etc/php/7.4/mods-available/apcu.ini
+RUN ln -s /etc/php/7.4/mods-available/apcu.ini /etc/php/7.4/fpm/conf.d/30-apcu.ini
+RUN ln -s /etc/php/7.4/mods-available/apcu.ini /etc/php/7.4/cli/conf.d/30-apcu.ini
 
 RUN chown -R www-data:www-data $WWW_PATH/
 RUN rm -rf $WWW_PATH/*

@@ -1,4 +1,5 @@
 #!/bin/bash
+sleep 60
 line=$(tail -n 1 /etc/hosts)
 line2=$(echo $line | awk '{print $2}')
  
