@@ -22,7 +22,8 @@ RUN apt-get install -y \
   libmemcached-dev \
   libpng12-dev \
   libpq-dev \
-  libxml2-dev
+  libxml2-dev \
+  libsodium-dev
 
 RUN apt-get install -y \
   pkg-config
