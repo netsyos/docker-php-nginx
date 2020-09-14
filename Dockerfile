@@ -3,8 +3,8 @@ FROM netsyos/nginx:latest
 RUN add-apt-repository -y ppa:ondrej/php
 
 RUN apt-get update
-#php7.4-mcrypt
-RUN apt-get -y --force-yes install php7.4-cli php7.4-fpm php7.4-mysql php7.4-json php7.4-libsodium \
+#php7.4-mcrypt removed now installl libsodium
+RUN apt-get -y --force-yes install php7.4-cli php7.4-fpm php7.4-mysql php7.4-json \
      php7.4-curl php7.4-xml php7.4-gd php7.4-intl php7.4-imap \
      php7.4-dev php7.4-bcmath php7.4-bz2 php7.4-mbstring php7.4-soap \
      php7.4-zip php7.4-imagick php-ssh2
@@ -29,6 +29,7 @@ RUN apt-get install -y \
 
 # PECL extensions
 RUN set -ex \
+ && pecl install -f libsodium \
  && pecl install APCu \
  && pecl install memcached \
  && pecl install redis
